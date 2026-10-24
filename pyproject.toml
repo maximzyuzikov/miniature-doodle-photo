@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "miniature-doodle-photo"
+version = "0.1.0"
+description = "Локальная адаптивная фотолаборатория: B&W 120 и Kodak 35mm"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.26", "Pillow>=10.0", "opencv-python-headless>=4.8"]
+
+[project.optional-dependencies]
+raw = ["rawpy>=0.21"]
+heic = ["pillow-heif>=0.18"]
+web = ["gradio>=5.0"]
+dev = ["pytest>=8.0"]
+all = ["rawpy>=0.21", "pillow-heif>=0.18", "gradio>=5.0"]
+
+[project.scripts]
+film-agent = "film_agent.cli:main"
+film-agent-web = "film_agent.web:main"
+
+[tool.setuptools.packages.find]
+include = ["film_agent*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
